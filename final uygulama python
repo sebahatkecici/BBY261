@@ -1,0 +1,115 @@
+print(""" ***********************************************************************
+                               Tic Tac Toe oyunu 
+                               Oyuncu1---> x dir.
+                               Oyuncu2--->O dur. 
+                               - tahta da işaretlemek istediğniz yerin numarasını giriniz....
+************************************************************************************""")
+def board_create():
+    global board
+    board=[]
+    counter=1
+
+    for i in range(0,3):
+        line=[]
+        for j in range(0,3):
+            line.append(counter)
+            counter+=1
+        board.append(line)
+board_create()
+
+def board_print():
+    for i in range(0,3):
+        for j in range(0,3):
+            print(board[i][j],end="\t")
+        print("\n")
+
+def xo(coordinate,xo):
+    if coordinate>0 and coordinate<=9:
+        if coordinate<=3:
+            board[0][coordinate-1]=xo
+        elif coordinate<=6:
+            board[1][coordinate%3 - 1] =xo
+        else:
+            board[2][coordinate % 3 - 1] =xo
+    else:
+         print("Hatalı bir kordinat girdiniz!")
+def x_win():
+    boolean=False
+    if board [0][0]=="x" and board [0][1]=="x" and board[0][2]=="x":
+        boolean=True
+    if board [1][0]=="x" and board [1][1]=="x" and board[1][2]=="x":
+        boolean=True
+    if board [2][0]=="x" and board [2][1]=="x" and board[2][2]=="x":
+        boolean=True
+    if board [0][0]=="x" and board [1][0]=="x" and board[2][0]=="x":
+        boolean=True
+    if board [0][1]=="x" and board [1][1]=="x" and board[2][1]=="x":
+        boolean=True
+    if board [0][2]=="x" and board [1][2]=="x" and board[2][2]=="x":
+        boolean=True
+    if board [0][0]=="x" and board [1][1]=="x" and board[2][2]=="x":
+        boolean=True
+    if board [0][2]=="x" and board [1][1]=="x" and board[2][0]=="x":
+        boolean=True
+    return boolean
+def o_win():
+    boolean=False
+    if board [0][0]=="o" and board [0][1]=="o" and board[0][2]=="o":
+        boolean=True
+    if board [1][0]=="o" and board [1][1]=="o" and board[1][2]=="o":
+        boolean=True
+    if board [2][0]=="o" and board [2][1]=="o" and board[2][2]=="o":
+        boolean=True
+    if board [0][0]=="o" and board [1][0]=="o" and board[2][0]=="o":
+        boolean=True
+    if board [0][1]=="o" and board [1][1]=="o" and board[2][1]=="o":
+        boolean=True
+    if board [0][2]=="o" and board [1][2]=="o" and board[2][2]=="o":
+        boolean=True
+    if board [0][0]=="o" and board [1][1]=="o" and board[2][2]=="o":
+        boolean=True
+    if board [0][2]=="o" and board [1][1]=="o" and board[2][0]=="o":
+        boolean=True
+    return boolean
+
+def draw():
+    if board[0][0]!=1 and board[0][1]!=2 and board[0][2]!=3 and board[1][0]!=4 and board[1][1]!=5 and board[1][2]!=6 and board[2][0]!=7 and board[2][1]!=8 and board[2][2]!=9:
+     return True
+
+player=1
+
+while True:
+    board_print()
+
+    print("player{}: ".format(player),end="")
+    if x_win()==True:
+        print("1. OYUNCU KAZANDI!")
+        break
+    elif o_win()==True:
+        print("2. OYUNCU KAZANDI!")
+        break
+    elif draw()==True:
+        print("BERABERE!")
+        break
+
+
+
+    girdi=int(input())
+
+    if player==1:
+        xo(girdi,"x")
+    else:
+        xo(girdi,"o")
+    if player==1:
+        player=2
+    else:
+        player=1
+
+
+
+
+
+
+
+
+
